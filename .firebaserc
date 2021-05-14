@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "personal-stuff-c937a": {
+      "hosting": {
+        "firebase-ngrx": [
+          "personal-stuff-c937a"
+        ]
+      }
+    }
+  }
+}
