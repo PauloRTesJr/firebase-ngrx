@@ -1,16 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable()
 export class LoginService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    public auth: AngularFireAuth
   ) { }
 
   login(user: any) {
-    console.log(user);
-    return this.http.post('/auth', user) as Observable<{ token: string }>;
+    console.log('Loggin in firebase with user: ', user);
+    return this.auth.signInWithEmailAndPassword(user.email, user.password);
   }
 }

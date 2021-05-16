@@ -1,15 +1,17 @@
-import { state } from "@angular/animations";
-import { Action, createReducer, on } from "@ngrx/store";
+import { createReducer, on } from "@ngrx/store";
+import firebase from 'firebase';
 import { loginFail, loginRequest, loginSuccess } from "./login.actions";
 
 export type LoginState = {
   email: string,
   password: string,
+  credential: firebase.auth.UserCredential
 }
 
 export const initialState: LoginState = {
   email: '',
-  password: ''
+  password: '',
+  credential: { credential: null, user: null, additionalUserInfo: null, operationType: null }
 };
 
 const _loginReducer = createReducer(
@@ -21,4 +23,4 @@ const _loginReducer = createReducer(
 
 export function loginReducer(state: any, action: any) {
   return _loginReducer(state, action);
-} 
+}
