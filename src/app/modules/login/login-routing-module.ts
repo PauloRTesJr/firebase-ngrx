@@ -5,21 +5,21 @@ import { LoginComponent } from './login.component';
 import { LoginService } from './services/login.service';
 
 const routes: Routes = [
-    {
-        path: 'login',
-        component: LoginComponent,
-        children: [
-            {
-                path: '',
-                component: LoginScreenComponent
-            }
-        ]
-    }
+  {
+    path: 'login',
+    component: LoginComponent,
+    children: [
+      {
+        path: '',
+        component: LoginScreenComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
-    providers: [LoginService]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+  providers: [LoginService],
 })
-export class LoginRoutingModule { }
+export class LoginRoutingModule {}
