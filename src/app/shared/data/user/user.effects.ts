@@ -8,15 +8,10 @@ import { catchError, map, mergeMap, tap, switchMap } from 'rxjs/operators';
 export class UserEffects {
   constructor(private actions$: Actions) {}
 
-  saveCredentialOnLoginSuccess$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(loginActions.loginSuccess),
-        tap(() => {
-          'Calling Effect in User Store when login success';
-        }),
-        map((credential) => userActions.userLoggedIn(credential))
-      ),
-    { dispatch: false }
+  saveCredentialOnLoginSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loginActions.loginSuccess),
+      map((credential) => userActions.userLoggedIn(credential))
+    )
   );
 }

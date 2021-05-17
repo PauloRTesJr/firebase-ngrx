@@ -15,10 +15,7 @@ export const initialState: LoginState = {
 const _loginReducer = createReducer(
   initialState,
   on(loginRequest, (state) => state),
-  on(loginSuccess, (state) => {
-    console.log(state);
-    return state;
-  }),
+  on(loginSuccess, (state) => state),
   on(loginFail, (state) => state)
 );
 

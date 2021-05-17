@@ -5,7 +5,6 @@ import { EMPTY, from, of } from 'rxjs';
 import { catchError, map, mergeMap, tap, switchMap } from 'rxjs/operators';
 import { LoginService } from '../../services/login.service';
 import * as loginActions from './login.actions';
-import * as userActions from '../../../../shared/data/user/user.actions';
 
 @Injectable()
 export class LoginEffects {
@@ -20,9 +19,6 @@ export class LoginEffects {
       ofType(loginActions.loginRequest),
       mergeMap((user) =>
         from(this.loginService.login(user)).pipe(
-          tap((credential) => {
-            console.log('Retrieved data from Firebase', credential);
-          }),
           map((credential) => loginActions.loginSuccess({ credential })),
           catchError(() => of(loginActions.loginFail()))
         )
@@ -30,13 +26,15 @@ export class LoginEffects {
     )
   );
 
-  redirectAfterLoginSuccess$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(loginActions.loginSuccess),
-      tap(() => {
-        console.log('Login Success Effect');
-        // this.router.navigateByUrl('/status');
-      })
-    )
+  redirectAfterLoginSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(loginActions.loginSuccess),
+        tap(() => {
+          console.log('Login Success Effect');
+          // this.router.navigateByUrl('/status');
+        })
+      ),
+    { dispatch: false }
   );
 }

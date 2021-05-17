@@ -12,6 +12,7 @@ import { LoginModule } from './modules/login/login.module';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { userReducer } from './shared/data/user/user.reducer';
+import { UserEffects } from './shared/data/user/user.effects';
 
 export const metaReducers: MetaReducer<any>[] = !environment.production
   ? [storeFreeze]
@@ -24,7 +25,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     StoreModule.forRoot({ user: userReducer }, { metaReducers }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([UserEffects]),
     StoreDevtoolsModule.instrument(),
     LoginModule,
     HttpClientModule,
