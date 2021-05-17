@@ -10,14 +10,14 @@ import { EffectsModule } from '@ngrx/effects';
 import { LoginEffects } from './data/login/login.effects';
 
 @NgModule({
-    declarations: [LoginComponent, LoginScreenComponent],
-    imports: [
-        CommonModule,
-        LoginRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        StoreModule.forFeature('login', loginReducer),
-        EffectsModule.forFeature([LoginEffects]),
-    ]
+  declarations: [LoginComponent, LoginScreenComponent],
+  imports: [
+    CommonModule,
+    LoginRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    StoreModule.forFeature('login', loginReducer),
+    EffectsModule.forFeature([LoginEffects]),
+  ],
 })
-export class LoginModule { }
+export class LoginModule {}
